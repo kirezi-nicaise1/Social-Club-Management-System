@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- events/templates/events/event_detail.html -->
+<h2>{{ event.title }}</h2>
+<p>{{ event.description }}</p>
+
+<h3>Attendees</h3>
+<ul>
+    {% for member in event.attendees.all %}
+        <li>{{ member.name }} {{ member.email }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

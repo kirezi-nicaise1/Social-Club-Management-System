@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Events</h1>
+        
+{% if user.is_authenticated %}
+<p>Hello, {{ user.username }}!</p>
+<form action="{% url 'logout' %}" method="POST" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+{% else %}
+<p>Please <a href="{% url 'login' %}">login</a> to continue.</p>
+{% endif %}
+
+        <a href="{% url 'event_create' %}" class="btn btn-success mb-3">Add Event</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                <tr>
+                    <td>{{ event.event_id }}</td>
+                    <td>{{ event.title }}</td>
+                    <td>{{ event.description }}</td>
+                    <td>{{ event.date }}</td>
+                    <td>{{ event.location }}</td>
+                    <td>
+                        <a href="{% url 'event_update' event.pk %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'event_delete' event.pk %}" class="btn btn-danger">Delete</a>
+                        <a href="{% url 'view_attendees' event.pk %}" class="btn btn-info">View Attendees</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

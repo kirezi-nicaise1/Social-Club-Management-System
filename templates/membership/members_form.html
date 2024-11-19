@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add/Edit Member</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .full-height {
+            height: 100vh; /* Full viewport height */
+        }
+    </style>
+</head>
+<body class="text-center mt-5">
+   
+    <div style="background-color: #e5eef3;width: 500px; margin-top: 200px;margin-left:500px ;" >
+        <fieldset>
+            <legend>{% if form.instance.pk %}Edit{% else %}Add{% endif %} Member</legend>
+    <form method="post" class="form-group ">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
+</fieldset>
+</div>
+    <a href="{% url 'member_list' %}">Cancel</a>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
